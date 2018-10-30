@@ -15,42 +15,11 @@ class Cliente
 
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo)
     {
-        this.$nome = $nomeNovo;
-        this.$idade = $idadeNovo;
-        this.$endereco = $enderecoNovo;
-        this.$cpf = $cpfNovo;
+        $this->nome = $nomeNovo;
+        $this->idade = $idadeNovo;
+        $this->endereco = $enderecoNovo;
+        $this->cpf = $cpfNovo;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdade()
-    {
-        return $this->idade;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndereco()
-    {
-        return $this->endereco;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCpf()
-    {
-        return $this->cpf;
-    }
 
 }
