@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,59 +13,63 @@
 
 <table class="table table-striped table-condensed table-bordered table-responsive">
     <thead><tr>
-        <th>Lista de Clientes</th>
+        <th><p class="m-2 float-left">Lista de Clientes</p>
+        <a href="adicionar.php" class="float-right m-2">Adicionar cliente</a> </th>
         </tr>
     <tr>
         <th><form method="get">
-                <input type="radio" name="sort" value="cresc" <?php if(isset($_GET['sort'])=="cresc"||!(isset($_GET['sort']))){echo 'checked';} ?>> Crescente<br>
-                <input type="radio" name="sort" value="decr" <?php if(isset($_GET['sort'])=="decr"){echo 'checked';} ?>> Decrescente
+                <input type="radio" name="sort" value="cresc" <?php if(isset($_GET['sort'])=="cresc"||!(isset($_GET['sort']))){echo 'checked';} ?>> Crescente
+                <input type="radio" name="sort" value="decr" <?php if(isset($_GET['sort'])=="decr"){echo 'checked';} ?>> Decrescente<br>
                 <input type="submit" class="btn btn-info" value="Aplicar">
             </form></th>
     </tr>
     </thead>
 <tbody>
 <?php
-include "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
-
-
-$i = 0;
-while($i<10) {
-    $clientes[$i] = new Cliente('Cliente ' . $i, $i * 7, 'bairro ' . ($i * 3) . ' casa ' . $i * 9, '111.111.111.1' . $i%10);
-    $i += 1;
+$i = 1;
+while($i<sizeof($_SESSION['clientes'])
+{
+    $clientes[$i] = $_SESSION['clientes'][$i];
 }
-usort($clientes, function ($first, $second) {
-    return strtolower($first->nome) > strtolower($second->nome);
-});
-if(isset($_GET['sort'])) {
-    if ($_GET['sort'] == "decr") {
-        usort($clientes, function ($first, $second) {
-            return strtolower($first->nome) < strtolower($second->nome);
-        });
+if(isset($_GET['salvar'])=="on")
+{
+    $clientes[sizeof($clientes) + 1] = new Cliente($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpf']);
+    $_SESSION['clientes'][sizeof($_SESSION['clientes']) + 1] = new Cliente($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpf']);
+}
+    usort($clientes, function ($first, $second) {
+        return strtolower($first->getNome()) > strtolower($second->getNome());
+    });
+    if (isset($_GET['sort'])) {
+        if ($_GET['sort'] == "decr") {
+            usort($clientes, function ($first, $second) {
+                return strtolower($first->nome) < strtolower($second->nome);
+            });
 
+        }
+        if ($_GET['sort'] == "cresc") {
+            usort($clientes, function ($first, $second) {
+                return strtolower($first->nome) > strtolower($second->nome);
+            });
+        }
     }
-    if ($_GET['sort'] == "cresc") {
-        usort($clientes, function ($first, $second) {
-            return strtolower($first->nome) > strtolower($second->nome);
-        });
+    foreach ($clientes as $cliente) {
+
+
+        ?>
+        <tr>
+
+            <td>
+                <form action="cliente.php" method="post">
+                    <input type="hidden" name="idade" value="<?php echo $cliente->getIdade() ?>">
+                    <input type="hidden" name="endereco" value="<?php echo $cliente->getEndereco() ?>">
+                    <input type="hidden" name="cpf" value="<?php echo $cliente->getCpf() ?>">
+                    <input type="hidden" name="get" value="<?php echo $_GET['sort'] ?>">
+                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome() ?>">
+                </form>
+            </td>
+        </tr>
+        <?php
     }
-}
-foreach ($clientes as $cliente) {
-
-
-?>
-<tr>
-
-        <td><form action="cliente.php" method="post">
-                <input type="hidden" name="idade" value="<?php echo $cliente->idade ?>">
-                <input type="hidden" name="endereco" value="<?php echo $cliente->endereco ?>">
-                <input type="hidden" name="cpf" value="<?php echo $cliente->cpf ?>">
-                <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
-                <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->nome ?>">
-            </form></td>
-</tr>
-<?php
-$i += 1;
-}
 ?>
 </tbody>
 </table>

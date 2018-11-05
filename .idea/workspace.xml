@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a514864-856b-4d35-8165-c3236292ec6b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/adicionar.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Classes/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/Classes/Cliente.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/cliente.php" afterDir="false" />
@@ -35,7 +36,7 @@
           <entry key="html" value="1" />
           <entry key="js" value="3" />
           <entry key="md" value="1" />
-          <entry key="php" value="12" />
+          <entry key="php" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -45,7 +46,7 @@
           <entry key="HTML" value="1" />
           <entry key="JavaScript" value="3" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="10" />
+          <entry key="PHP" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
@@ -57,14 +58,14 @@
         <counts>
           <entry key="html" value="606" />
           <entry key="js" value="145" />
-          <entry key="php" value="3654" />
+          <entry key="php" value="5148" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="606" />
           <entry key="JavaScript" value="145" />
-          <entry key="PHP" value="3654" />
+          <entry key="PHP" value="5148" />
         </counts>
       </usages-collector>
     </session>
@@ -74,8 +75,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
+            <state relative-caret-position="136">
+              <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/adicionar.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -83,8 +93,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/cliente.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="262">
+              <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -92,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Classes/Cliente.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="-47">
+              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -118,7 +128,9 @@
         <option value="$PROJECT_DIR$/js/button.js" />
         <option value="$PROJECT_DIR$/public/indexdesc.php" />
         <option value="$PROJECT_DIR$/public/ordena.php" />
+        <option value="$PROJECT_DIR$/public/lista.php" />
         <option value="$PROJECT_DIR$/Classes/Cliente.php" />
+        <option value="$PROJECT_DIR$/public/adicionar.php" />
         <option value="$PROJECT_DIR$/public/cliente.php" />
         <option value="$PROJECT_DIR$/public/index.php" />
       </list>
@@ -199,12 +211,12 @@
       <workItem from="1540900390407" duration="6599000" />
       <workItem from="1541072866544" duration="7960000" />
       <workItem from="1541085164360" duration="30000" />
-      <workItem from="1541417026956" duration="7352000" />
+      <workItem from="1541417026956" duration="14238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24199000" />
+    <option name="totallyTimeSpent" value="31085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -272,24 +284,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/lista.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="82" column="7" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Cliente.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="-47">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/adicionar.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/cliente.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="262">
+          <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="16" column="115" selection-start-line="16" selection-start-column="115" selection-end-line="16" selection-end-column="115" />
+        <state relative-caret-position="136">
+          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
         </state>
       </provider>
     </entry>
