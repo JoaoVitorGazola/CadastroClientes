@@ -21,5 +21,4 @@ class Cliente
         $this->cpf = $cpfNovo;
     }
 
-
 }

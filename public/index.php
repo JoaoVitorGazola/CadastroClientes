@@ -10,17 +10,43 @@
 <table class="table table-striped table-condensed table-bordered table-responsive">
     <thead><tr>
         <th>Lista de Clientes</th>
-        </tr></thead>
+        </tr>
+    <tr>
+        <th><form method="get">
+                <input type="radio" name="sort" value="cresc" <?php if(isset($_GET['sort'])=="cresc"||!(isset($_GET['sort']))){echo 'checked';} ?>> Crescente<br>
+                <input type="radio" name="sort" value="decr" <?php if(isset($_GET['sort'])=="decr"){echo 'checked';} ?>> Decrescente
+                <input type="submit" class="btn btn-info" value="Aplicar">
+            </form></th>
+    </tr>
+    </thead>
 <tbody>
 <?php
 include "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
-$i = 1;
-while($i<=10) {
+
+
+$i = 0;
+while($i<10) {
     $clientes[$i] = new Cliente('Cliente ' . $i, $i * 7, 'bairro ' . ($i * 3) . ' casa ' . $i * 9, '111.111.111.1' . $i%10);
     $i += 1;
 }
-$clienteSelecionado = new Cliente('', '', '', '');
+usort($clientes, function ($first, $second) {
+    return strtolower($first->nome) > strtolower($second->nome);
+});
+if(isset($_GET['sort'])) {
+    if ($_GET['sort'] == "decr") {
+        usort($clientes, function ($first, $second) {
+            return strtolower($first->nome) < strtolower($second->nome);
+        });
+
+    }
+    if ($_GET['sort'] == "cresc") {
+        usort($clientes, function ($first, $second) {
+            return strtolower($first->nome) > strtolower($second->nome);
+        });
+    }
+}
 foreach ($clientes as $cliente) {
+
 
 ?>
 <tr>
@@ -29,10 +55,14 @@ foreach ($clientes as $cliente) {
                 <input type="hidden" name="idade" value="<?php echo $cliente->idade ?>">
                 <input type="hidden" name="endereco" value="<?php echo $cliente->endereco ?>">
                 <input type="hidden" name="cpf" value="<?php echo $cliente->cpf ?>">
+                <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
                 <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->nome ?>">
             </form></td>
 </tr>
-<?php } ?>
+<?php
+$i += 1;
+}
+?>
 </tbody>
 </table>
 

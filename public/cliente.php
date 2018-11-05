@@ -34,7 +34,7 @@
         </tbody>
     </table>
 </div>
-<form action="index.php" method="get">
+<form action="index.php?sort=<?php echo $_POST['get']?>" method="post">
     <input type="submit" class="btn btn-info" value="Voltar para a lista">
 </form>
 </body>
