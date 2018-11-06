@@ -22,19 +22,35 @@
         <tr>
             <th>Idade</th>
             <th>Endereço</th>
-            <th>CPF</th>
+            <th>Endereço de Cobrança</th>
+            <?php
+            if(isset($_POST['cpf'])) {
+                echo '<th>CPF</th>';
+        }
+            if(isset($_POST['cnpj'])) {
+                echo '<th>CNPJ</th>';
+        }
+        ?>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td><?php echo $_POST['idade']?></td>
             <td><?php echo $_POST['endereco']?></td>
-            <td><?php echo $_POST['cpf']?></td>
+            <td><?php echo $_POST['enderecoCobranca']?></td>
+            <?php
+            if(isset($_POST['cpf'])) {
+                echo '<td>'.$_POST['cpf'].'</td>';
+            }
+                if(isset($_POST['cnpj'])) {
+                echo '<td>'.$_POST['cnpj'].'</td>';
+                }
+                ?>
         </tr>
         </tbody>
     </table>
 </div>
-<form action="index.php?sort=<?php if(isset($_POST['get'])){echo $_POST['get'];}?>" method="post">
+<form action="lista.php?sort=<?php if(isset($_POST['get'])){echo $_POST['get'];}?>" method="post">
     <input type="submit" class="btn btn-info" value="Voltar para a lista">
 </form>
 </body>

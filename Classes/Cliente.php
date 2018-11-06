@@ -11,14 +11,13 @@ class Cliente
     private $nome;
     private $idade;
     private $endereco;
-    private $cpf;
+    private $enderecoCobranca;
 
-    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo)
+    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo)
     {
         $this->setNome($nomeNovo);
         $this->setIdade($idadeNovo);
         $this->setEndereco($enderecoNovo);
-        $this->setCpf($cpfNovo);
     }
     public function setNome($nomeNovo){
         $this->nome = $nomeNovo;
@@ -29,8 +28,9 @@ class Cliente
     public function setEndereco($enderecoNovo){
         $this->endereco = $enderecoNovo;
     }
-    public function setCpf($cpfNovo){
-        $this->cpf = $cpfNovo;
+    public function setEnderecoCobranca($enderecoCobranca)
+    {
+        $this->enderecoCobranca = $enderecoCobranca;
     }
     public function getNome()
     {
@@ -44,8 +44,8 @@ class Cliente
     {
         return $this->endereco;
     }
-    public function getCpf()
+    public function getEnderecoCobranca()
     {
-        return $this->cpf;
+        return $this->enderecoCobranca;
     }
 }

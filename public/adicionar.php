@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,15 +10,20 @@
     Insira os dados do novo cliente:
 </h1>
 <div>
-<form action="index.php?salvar=on" method="post">
+<form action="index.php" method="post">
     <label name="nome">Nome</label>
     <input type="text" name="nome" class="form-control">
     <label name="idade">Idade</label>
     <input type="text" name="idade" class="form-control">
     <label name="endereco">Endereço</label>
     <input type="text" name="endereco" class="form-control">
-    <label name="cpf">CPF</label>
-    <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00">
+    <input type="checkbox" name="enderecoCobranca"> Endereço diferente para Cobrança?<br>
+    <label name="cpf">Endereço para cobrança:</label>
+    <input type="text" name="endereco2" class="form-control" placeholder="Preencher apenas se a caixa acima for marcada">
+    <input type="radio" name="novo" value="fisico" checked> Pessoa Fisica
+    <input type="radio" name="novo" value="juridico"> Pessoa Juridica<br>
+    <label name="cpf">CPF ou CNPJ</label>
+    <input type="text" name="cpfoucnpj" class="form-control">
     <input type="submit" name="salvar" value="Salvar" class="btn btn-info m-2">
 </form>
 </div>

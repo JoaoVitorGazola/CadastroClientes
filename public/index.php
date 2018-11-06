@@ -1,82 +1,47 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: joaov
+ * Date: 11/6/2018
+ * Time: 8:25 AM
+ */
+require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
+require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteJuridico.php";
+require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteFisico.php";
 session_start();
-include "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Clientes</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
-<body class="container container-fluid ">
+    $_SESSION['clientesJuridicos'][0] = new ClienteJuridico('', '', '', '');
+    $_SESSION['clientesFisicos'][0] = new ClienteFisico('', '', '', '');
 
-<table class="table table-striped table-condensed table-bordered table-responsive">
-    <thead><tr>
-        <th><p class="m-2 float-left">Lista de Clientes</p>
-        <a href="adicionar.php" class="float-right m-2">Adicionar cliente</a> </th>
-        </tr>
-    <tr>
-        <th><form method="get">
-                <input type="radio" name="sort" value="cresc" <?php if(isset($_GET['sort'])=="cresc"||!(isset($_GET['sort']))){echo 'checked';} ?>> Crescente
-                <input type="radio" name="sort" value="decr" <?php if(isset($_GET['sort'])=="decr"){echo 'checked';} ?>> Decrescente<br>
-                <input type="submit" class="btn btn-info" value="Aplicar">
-            </form></th>
-    </tr>
-    </thead>
-<tbody>
-<?php
-$i = 1;
-while($i<sizeof($_SESSION['clientes'])
-{
-    $clientes[$i] = $_SESSION['clientes'][$i];
-}
-if(isset($_GET['salvar'])=="on")
-{
-    $clientes[sizeof($clientes) + 1] = new Cliente($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpf']);
-    $_SESSION['clientes'][sizeof($_SESSION['clientes']) + 1] = new Cliente($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpf']);
-}
-    usort($clientes, function ($first, $second) {
-        return strtolower($first->getNome()) > strtolower($second->getNome());
-    });
-    if (isset($_GET['sort'])) {
-        if ($_GET['sort'] == "decr") {
-            usort($clientes, function ($first, $second) {
-                return strtolower($first->nome) < strtolower($second->nome);
-            });
-
+if(isset($_POST['novo'])) {
+    if ($_POST['novo'] == "juridico") {
+        $clienteJuridico = new ClienteJuridico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj']);
+        if (isset($_POST['enderecoCobranca']))
+        {
+            $clienteJuridico->setEnderecoCobranca($_POST['endereco2']);
         }
-        if ($_GET['sort'] == "cresc") {
-            usort($clientes, function ($first, $second) {
-                return strtolower($first->nome) > strtolower($second->nome);
-            });
+        else
+        {
+            $clienteJuridico->setEnderecoCobranca($_POST['endereco']);
         }
+        array_push($_SESSION['clientesJuridicos'], $clienteJuridico);
     }
-    foreach ($clientes as $cliente) {
-
-
-        ?>
-        <tr>
-
-            <td>
-                <form action="cliente.php" method="post">
-                    <input type="hidden" name="idade" value="<?php echo $cliente->getIdade() ?>">
-                    <input type="hidden" name="endereco" value="<?php echo $cliente->getEndereco() ?>">
-                    <input type="hidden" name="cpf" value="<?php echo $cliente->getCpf() ?>">
-                    <input type="hidden" name="get" value="<?php echo $_GET['sort'] ?>">
-                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome() ?>">
-                </form>
-            </td>
-        </tr>
-        <?php
+    if ($_POST['novo'] == "fisico")
+    {
+        $clienteFisico= new ClienteFisico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj']);
+        if (isset($_POST['enderecoCobranca']))
+        {
+            $clienteFisico->setEnderecoCobranca($_POST['endereco2']);
+        }
+        else
+        {
+            $clienteFisico->setEnderecoCobranca($_POST['endereco']);
+        }
+        array_push($_SESSION['clientesFisicos'], $clienteFisico);
     }
+}
+
 ?>
-</tbody>
-</table>
-
-
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</html>
+<form action="lista.php" method="get">
+    <input type="hidden" name="sort" value="cresc">
+    <input type="submit" value="Ir para a Lista" class="btn btn-primary">
+</form>
