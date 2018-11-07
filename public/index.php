@@ -9,12 +9,12 @@ require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
 require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteJuridico.php";
 require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteFisico.php";
 session_start();
-    $_SESSION['clientesJuridicos'][0] = new ClienteJuridico('', '', '', '');
-    $_SESSION['clientesFisicos'][0] = new ClienteFisico('', '', '', '');
+    $_SESSION['clientesJuridicos'][0] = new ClienteJuridico('', '', '', '', '');
+    $_SESSION['clientesFisicos'][0] = new ClienteFisico('', '', '', '', '');
 
 if(isset($_POST['novo'])) {
     if ($_POST['novo'] == "juridico") {
-        $clienteJuridico = new ClienteJuridico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj']);
+        $clienteJuridico = new ClienteJuridico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj'], $_POST['importancia']);
         if (isset($_POST['enderecoCobranca']))
         {
             $clienteJuridico->setEnderecoCobranca($_POST['endereco2']);
@@ -27,7 +27,7 @@ if(isset($_POST['novo'])) {
     }
     if ($_POST['novo'] == "fisico")
     {
-        $clienteFisico= new ClienteFisico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj']);
+        $clienteFisico= new ClienteFisico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj'], $_POST['importancia']);
         if (isset($_POST['enderecoCobranca']))
         {
             $clienteFisico->setEnderecoCobranca($_POST['endereco2']);

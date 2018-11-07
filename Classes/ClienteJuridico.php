@@ -10,10 +10,10 @@ class ClienteJuridico extends Cliente
 {
     private $cnpj;
     private $tipo = "Juridico";
-    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cnpjNovo)
+    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cnpjNovo, $importanciaNovo)
     {
         $this->setCnpj($cnpjNovo);
-        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo);
+        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo);
     }
 
     public function getCnpj()

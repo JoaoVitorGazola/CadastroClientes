@@ -66,6 +66,7 @@ if (isset($_GET['sort'])) {
                     <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente->getEnderecoCobranca()?>">
                     <input type="hidden" name="cpf" value="<?php echo $cliente->getCpf()?>">
                     <input type="hidden" name="tipo" value="<?php echo $cliente->getTipo()?>">
+                    <input type="hidden" name="importancia" value="<?php echo $cliente->getImportancia()?>">
                     <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
                 </form>
             </td>
@@ -86,6 +87,7 @@ if (isset($_GET['sort'])) {
                     <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente->getEnderecoCobranca()?>">
                     <input type="hidden" name="cnpj" value="<?php echo $cliente->getCnpj()?>">
                     <input type="hidden" name="tipo" value="<?php echo $cliente->getTipo()?>">
+                    <input type="hidden" name="importancia" value="<?php echo $cliente->getImportancia()?>">
                     <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
                 </form>
             </td>

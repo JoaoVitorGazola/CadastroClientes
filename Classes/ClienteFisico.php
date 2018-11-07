@@ -10,10 +10,10 @@ class ClienteFisico extends Cliente
 {
     private $cpf;
     private $tipo = "Fisico";
-    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo)
+    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo, $importanciaNovo)
     {
         $this->setCpf($cpfNovo);
-        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo);
+        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo);
     }
     public function getCpf()
     {

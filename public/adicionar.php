@@ -20,6 +20,12 @@
     <input type="checkbox" name="enderecoCobranca"> Endereço diferente para Cobrança?<br>
     <label name="cpf">Endereço para cobrança:</label>
     <input type="text" name="endereco2" class="form-control" placeholder="Preencher apenas se a caixa acima for marcada">
+    <label name="importancia">Importancia:</label>
+    <input type="radio" name="importancia" value="1">1
+    <input type="radio" name="importancia" value="2">2
+    <input type="radio" name="importancia" value="3">3
+    <input type="radio" name="importancia" value="4">4
+    <input type="radio" name="importancia" value="5">5<br>
     <input type="radio" name="novo" value="fisico" checked> Pessoa Fisica
     <input type="radio" name="novo" value="juridico"> Pessoa Juridica<br>
     <label name="cpf">CPF ou CNPJ</label>

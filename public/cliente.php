@@ -31,6 +31,7 @@
                 echo '<th>CNPJ</th>';
         }
         ?>
+            <th>Importancia:</th>
         </tr>
         </thead>
         <tbody>
@@ -46,6 +47,7 @@
                 echo '<td>'.$_POST['cnpj'].'</td>';
                 }
                 ?>
+            <td><?php echo $_POST['importancia']?> estrelas</td>
         </tr>
         </tbody>
     </table>
