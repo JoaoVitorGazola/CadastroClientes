@@ -52,33 +52,33 @@ if (isset($_GET['sort'])) {
                 return strtolower($first->getNome()) > strtolower($second->getNome());
             });
         }
-    }
+    }    ?>
 
-    foreach ($clientesFisicos as $cliente) {
-
-
-        ?>
-        <tr class="float-left">
-
-            <td>
+        <tr>
+            <td class="m-2">Fisicos</td>
+            <?php     foreach ($clientesFisicos as $cliente) {
+                ?>
+            <td class=" float-left m-2">
                 <form action="cliente.php" method="post">
                     <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
                     <input type="hidden" name="idade" value="<?php echo $cliente->getIdade()?>">
                     <input type="hidden" name="endereco" value="<?php echo $cliente->getEndereco()?>">
+                    <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente->getEnderecoCobranca()?>">
                     <input type="hidden" name="cpf" value="<?php echo $cliente->getCpf()?>">
                     <input type="hidden" name="tipo" value="<?php echo $cliente->getTipo()?>">
                     <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
                 </form>
             </td>
-        </tr>
+
                 <?php
                 }
-                foreach ($clientesJuridicos as $cliente) {
-
-
                 ?>
-                    <tr>
-            <td>
+        </tr>
+<tr>
+    <td class="m-2">Jurídicos:</td>
+    <?php                 foreach ($clientesJuridicos as $cliente) {
+            ?>
+                        <td  class="float-left m-2">
                 <form action="cliente.php" method="post">
                     <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
                     <input type="hidden" name="idade" value="<?php echo $cliente->getIdade()?>">
@@ -89,10 +89,11 @@ if (isset($_GET['sort'])) {
                     <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
                 </form>
             </td>
+                <?php
+            }
+            ?>
         </tr>
-        <?php
-    }
-?>
+
 </tbody>
 </table>
 

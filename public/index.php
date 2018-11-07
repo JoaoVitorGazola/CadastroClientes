@@ -38,6 +38,7 @@ if(isset($_POST['novo'])) {
         }
         array_push($_SESSION['clientesFisicos'], $clienteFisico);
     }
+    header("location:/lista.php");
 }
 
 ?>
