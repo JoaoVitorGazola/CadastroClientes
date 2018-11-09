@@ -1,4 +1,5 @@
 <?php
+namespace SON\Cliente\Util;
 /**
  * Created by PhpStorm.
  * User: joaov

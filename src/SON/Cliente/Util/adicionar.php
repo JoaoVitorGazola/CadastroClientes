@@ -1,3 +1,7 @@
+<?php
+
+namespace SON\Cliente\Util;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +14,7 @@
     Insira os dados do novo cliente:
 </h1>
 <div>
-<form action="index.php" method="post">
+<form action="../../../../index.php" method="post">
     <label name="nome">Nome</label>
     <input type="text" name="nome" class="form-control">
     <label name="idade">Idade</label>

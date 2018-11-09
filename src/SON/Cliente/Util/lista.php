@@ -1,8 +1,12 @@
 <?php
+namespace SON\Cliente\Util;
+define('CLASS_DIR', '../../../../src/');
+set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
+spl_autoload_register();
 
-require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/Cliente.php";
-require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteJuridico.php";
-require "C:/Users/joaov/Documents/GitHub/CadastroClientes/Classes/ClienteFisico.php";
+use SON\Cliente\Cliente;
+use SON\Cliente\Types\ClienteJuridico;
+use SON\Cliente\Types\ClienteFisico;
 session_start();
 
 ?>

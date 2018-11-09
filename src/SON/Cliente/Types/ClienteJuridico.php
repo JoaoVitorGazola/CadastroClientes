@@ -5,6 +5,9 @@
  * Date: 11/6/2018
  * Time: 8:27 AM
  */
+namespace SON\Cliente\Types;
+
+use SON\Cliente\Cliente;
 
 class ClienteJuridico extends Cliente
 {
