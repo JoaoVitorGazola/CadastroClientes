@@ -16,7 +16,7 @@ class ClienteJuridico extends Cliente
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cnpjNovo, $importanciaNovo)
     {
         $this->setCnpj($cnpjNovo);
-        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo);
+        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo, 1);
     }
 
     public function getCnpj()

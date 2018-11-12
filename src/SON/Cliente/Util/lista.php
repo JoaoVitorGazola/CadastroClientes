@@ -7,8 +7,14 @@ spl_autoload_register();
 use SON\Cliente\Cliente;
 use SON\Cliente\Types\ClienteJuridico;
 use SON\Cliente\Types\ClienteFisico;
+use PDO;
 session_start();
+try{
+    $pdo = new PDO("mysql:host=localhost;dbname=cadastrocliente", "root", "");
 
+}catch (\PDOException $e){
+    var_dump($e);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

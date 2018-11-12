@@ -12,8 +12,20 @@ spl_autoload_register();
 
 use SON\Cliente\Types\ClienteFisico;
 use SON\Cliente\Types\ClienteJuridico;
-
+use PDO;
 session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+try{
+    $pdo = new PDO("mysql:host=$servername", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->exec("CREATE DATABASE cadastrocliente");
+    $sql = "CREATE TABLE Clientes(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(60) NOT NULL, endereco VARCHAR(100), enderecoCobranca VARCHAR(100), cpfoucnpj VARCHAR(20) NOT NULL, fisicooujuridico CHAR(1) NOT NULL, importancia INTEGER, reg_date TIMESTAMP)";
+    $pdo->exec($sql);
+
+}catch (PDOException $PDOException){
+}
     $_SESSION['clientesJuridicos'][0] = new ClienteJuridico('', '', '', '', '');
     $_SESSION['clientesFisicos'][0] = new ClienteFisico('', '', '', '', '');
 

@@ -15,7 +15,7 @@ class ClienteFisico extends Cliente
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo, $importanciaNovo)
     {
         $this->setCpf($cpfNovo);
-        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo);
+        parent::__construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo, 2);
     }
     public function getCpf()
     {

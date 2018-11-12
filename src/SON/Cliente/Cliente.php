@@ -13,13 +13,14 @@ class Cliente
     private $endereco;
     private $enderecoCobranca;
     private $importancia;
-
-    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo)
+    private $fisicooujuridico;
+    public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo, $fisicooujuridicoNovo)
     {
         $this->setNome($nomeNovo);
         $this->setIdade($idadeNovo);
         $this->setEndereco($enderecoNovo);
         $this->setImportancia($importanciaNovo);
+        $this->setFisicooujuridico($fisicooujuridicoNovo);
     }
     public function setNome($nomeNovo){
         $this->nome = $nomeNovo;
@@ -37,6 +38,10 @@ class Cliente
     public function setImportancia($importancia)
     {
             $this->importancia = $importancia;
+    }
+    public function setFisicooujuridico($fisicooujuridico)
+    {
+        $this->fisicooujuridico = $fisicooujuridico;
     }
     public function getNome()
     {
@@ -57,5 +62,9 @@ class Cliente
     public function getImportancia()
     {
         return $this->importancia;
+    }
+    public function getFisicooujuridico()
+    {
+        return $this->fisicooujuridico;
     }
 }
