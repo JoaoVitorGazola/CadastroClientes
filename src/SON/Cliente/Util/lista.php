@@ -8,13 +8,14 @@ use SON\Cliente\Cliente;
 use SON\Cliente\Types\ClienteJuridico;
 use SON\Cliente\Types\ClienteFisico;
 use PDO;
-session_start();
-try{
-    $pdo = new PDO("mysql:host=localhost;dbname=cadastrocliente", "root", "");
+use SON\Database\MyPDO;
 
-}catch (\PDOException $e){
-    var_dump($e);
-}
+session_start();
+$servername = $_SESSION['servername'];
+$username = $_SESSION['username'];
+$password = $_SESSION['password'];
+$dbname = $_SESSION['dbname'];
+$pdo = new MyPDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +29,11 @@ try{
 <table class="table table-striped table-condensed table-bordered table-responsive">
     <thead><tr>
         <th><p class="m-2 float-left">Lista de Clientes</p>
-        <a href="adicionar.php" class="float-right m-2">Adicionar cliente</a> </th>
-        </tr>
+        <form action="adicionar.php" method="post">
+        <input type="hidden" name="get" value="<?php if(isset($_GET['sort'])){echo $_GET['sort'];}else{echo 'cresc';}?>">
+            <input type="submit" class="btn btn-info" value="Adicionar cliente">
+        </form>
+    </tr>
     <tr>
         <th><form method="get">
                 <input type="radio" name="sort" value="cresc" <?php if(isset($_GET['sort'])){if ($_GET['sort']=="cresc"){echo 'checked';}} ?>> Crescente
@@ -41,26 +45,17 @@ try{
 <tbody>
 
 <?php
-$clientesFisicos = array_slice($_SESSION['clientesFisicos'], 1);
-$clientesJuridicos = array_slice($_SESSION['clientesJuridicos'], 1);
-
+$clientesFisicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=2 ORDER BY nome");
+$clientesJuridicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=1 ORDER BY nome");
 
 if (isset($_GET['sort'])) {
         if ($_GET['sort'] == "decr") {
-            usort($clientesFisicos, function ($first, $second) {
-                return strtolower($first->getNome()) < strtolower($second->getNome());
-            });
-            usort($clientesJuridicos, function ($first, $second) {
-                return strtolower($first->getNome()) < strtolower($second->getNome());
-            });
+            $clientesFisicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=2 ORDER BY nome DESC");
+            $clientesJuridicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=1 ORDER BY nome DESC");
         }
         if ($_GET['sort'] == "cresc") {
-            usort($clientesFisicos, function ($first, $second) {
-                return strtolower($first->getNome()) > strtolower($second->getNome());
-            });
-            usort($clientesJuridicos, function ($first, $second) {
-                return strtolower($first->getNome()) > strtolower($second->getNome());
-            });
+            $clientesFisicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=2 ORDER BY nome");
+            $clientesJuridicos = $pdo->query("SELECT * FROM clientes WHERE fisicooujuridico=1 ORDER BY nome");
         }
     }    ?>
 
@@ -71,13 +66,12 @@ if (isset($_GET['sort'])) {
             <td class=" float-left m-2">
                 <form action="cliente.php" method="post">
                     <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
-                    <input type="hidden" name="idade" value="<?php echo $cliente->getIdade()?>">
-                    <input type="hidden" name="endereco" value="<?php echo $cliente->getEndereco()?>">
-                    <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente->getEnderecoCobranca()?>">
-                    <input type="hidden" name="cpf" value="<?php echo $cliente->getCpf()?>">
-                    <input type="hidden" name="tipo" value="<?php echo $cliente->getTipo()?>">
-                    <input type="hidden" name="importancia" value="<?php echo $cliente->getImportancia()?>">
-                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
+                    <input type="hidden" name="idade" value="<?php echo $cliente['idade']?>">
+                    <input type="hidden" name="endereco" value="<?php echo $cliente['endereco']?>">
+                    <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente['enderecoCobranca']?>">
+                    <input type="hidden" name="cpf" value="<?php echo $cliente['cpfoucnpj']?>">
+                    <input type="hidden" name="importancia" value="<?php echo $cliente['importancia']?>">
+                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente['nome']?>">
                 </form>
             </td>
 
@@ -92,13 +86,12 @@ if (isset($_GET['sort'])) {
                         <td  class="float-left m-2">
                 <form action="cliente.php" method="post">
                     <input type="hidden" name="get" value="<?php echo $_GET['sort']?>">
-                    <input type="hidden" name="idade" value="<?php echo $cliente->getIdade()?>">
-                    <input type="hidden" name="endereco" value="<?php echo $cliente->getEndereco()?>">
-                    <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente->getEnderecoCobranca()?>">
-                    <input type="hidden" name="cnpj" value="<?php echo $cliente->getCnpj()?>">
-                    <input type="hidden" name="tipo" value="<?php echo $cliente->getTipo()?>">
-                    <input type="hidden" name="importancia" value="<?php echo $cliente->getImportancia()?>">
-                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente->getNome()?>">
+                    <input type="hidden" name="idade" value="<?php echo $cliente['idade']?>">
+                    <input type="hidden" name="endereco" value="<?php echo $cliente['endereco']?>">
+                    <input type="hidden" name="enderecoCobranca" value="<?php echo $cliente['enderecoCobranca']?>">
+                    <input type="hidden" name="cnpj" value="<?php echo $cliente['cpfoucnpj']?>">
+                    <input type="hidden" name="importancia" value="<?php echo $cliente['importancia']?>">
+                    <input type="submit" class="btn btn-info" name="nome" value="<?php echo $cliente['nome']?>">
                 </form>
             </td>
                 <?php

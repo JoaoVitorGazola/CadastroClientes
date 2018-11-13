@@ -12,25 +12,19 @@ spl_autoload_register();
 
 use SON\Cliente\Types\ClienteFisico;
 use SON\Cliente\Types\ClienteJuridico;
-use PDO;
+use SON\Database\MyPDO;
 session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-try{
-    $pdo = new PDO("mysql:host=$servername", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->exec("CREATE DATABASE cadastrocliente");
-    $sql = "CREATE TABLE Clientes(id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(60) NOT NULL, endereco VARCHAR(100), enderecoCobranca VARCHAR(100), cpfoucnpj VARCHAR(20) NOT NULL, fisicooujuridico CHAR(1) NOT NULL, importancia INTEGER, reg_date TIMESTAMP)";
-    $pdo->exec($sql);
-
-}catch (PDOException $PDOException){
-}
-    $_SESSION['clientesJuridicos'][0] = new ClienteJuridico('', '', '', '', '');
-    $_SESSION['clientesFisicos'][0] = new ClienteFisico('', '', '', '', '');
-
+$dbname = "dbclientes";
+$_SESSION['servername'] = $servername;
+$_SESSION['username'] = $username;
+$_SESSION['password'] = $password;
+$_SESSION['dbname'] = $dbname;
+    $pdo = MyPDO::conectar($servername, $username, $password, $dbname);
 if(isset($_POST['novo'])) {
-    if ($_POST['novo'] == "juridico") {
+    if ($_POST['novo'] == 1) {
         $clienteJuridico = new ClienteJuridico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj'], $_POST['importancia']);
         if (isset($_POST['enderecoCobranca']))
         {
@@ -40,9 +34,9 @@ if(isset($_POST['novo'])) {
         {
             $clienteJuridico->setEnderecoCobranca($_POST['endereco']);
         }
-        array_push($_SESSION['clientesJuridicos'], $clienteJuridico);
+        $clienteNovo = $clienteJuridico;
     }
-    if ($_POST['novo'] == "fisico")
+    if ($_POST['novo'] == 2)
     {
         $clienteFisico= new ClienteFisico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj'], $_POST['importancia']);
         if (isset($_POST['enderecoCobranca']))
@@ -53,8 +47,9 @@ if(isset($_POST['novo'])) {
         {
             $clienteFisico->setEnderecoCobranca($_POST['endereco']);
         }
-        array_push($_SESSION['clientesFisicos'], $clienteFisico);
+        $clienteNovo = $clienteFisico;
     }
+    $pdo->persist($clienteNovo);
     header("location:/src/SON/Cliente/Util/lista.php");
 }
 ?>

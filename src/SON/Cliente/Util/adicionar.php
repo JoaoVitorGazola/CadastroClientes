@@ -22,7 +22,7 @@ namespace SON\Cliente\Util;
     <label name="endereco">Endereço</label>
     <input type="text" name="endereco" class="form-control">
     <input type="checkbox" name="enderecoCobranca"> Endereço diferente para Cobrança?<br>
-    <label name="cpf">Endereço para cobrança:</label>
+    <label name="endereco2">Endereço para cobrança:</label>
     <input type="text" name="endereco2" class="form-control" placeholder="Preencher apenas se a caixa acima for marcada">
     <label name="importancia">Importancia:</label>
     <input type="radio" name="importancia" value="1">1
@@ -30,12 +30,15 @@ namespace SON\Cliente\Util;
     <input type="radio" name="importancia" value="3">3
     <input type="radio" name="importancia" value="4">4
     <input type="radio" name="importancia" value="5">5<br>
-    <input type="radio" name="novo" value="fisico" checked> Pessoa Fisica
-    <input type="radio" name="novo" value="juridico"> Pessoa Juridica<br>
+    <input type="radio" name="novo" value="2" checked> Pessoa Fisica
+    <input type="radio" name="novo" value="1"> Pessoa Juridica<br>
     <label name="cpf">CPF ou CNPJ</label>
     <input type="text" name="cpfoucnpj" class="form-control">
     <input type="submit" name="salvar" value="Salvar" class="btn btn-info m-2">
 </form>
+    <form action="lista.php?sort=<?php if(isset($_POST['get'])){echo $_POST['get'];}?>" method="post">
+        <input type="submit" class="btn btn-info m-2 float-right" value="Voltar para a lista">
+    </form>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
