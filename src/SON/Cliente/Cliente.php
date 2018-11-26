@@ -14,6 +14,7 @@ class Cliente
     private $enderecoCobranca;
     private $importancia;
     private $fisicooujuridico;
+    private $cpfouCnpj;
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $importanciaNovo, $fisicooujuridicoNovo)
     {
         $this->setNome($nomeNovo);
@@ -43,6 +44,10 @@ class Cliente
     {
         $this->fisicooujuridico = $fisicooujuridico;
     }
+    public function setCpfouCnpj($cpfouCnpj)
+    {
+        $this->cpfouCnpj = $cpfouCnpj;
+    }
     public function getNome()
     {
         return $this->nome;
@@ -66,5 +71,9 @@ class Cliente
     public function getFisicooujuridico()
     {
         return $this->fisicooujuridico;
+    }
+    public function getCpfouCnpj()
+    {
+        return $this->cpfouCnpj;
     }
 }

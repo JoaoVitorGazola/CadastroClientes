@@ -23,6 +23,7 @@ $_SESSION['username'] = $username;
 $_SESSION['password'] = $password;
 $_SESSION['dbname'] = $dbname;
     $pdo = MyPDO::conectar($servername, $username, $password, $dbname);
+$pdo = new MyPDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 if(isset($_POST['novo'])) {
     if ($_POST['novo'] == 1) {
         $clienteJuridico = new ClienteJuridico($_POST['nome'], $_POST['idade'], $_POST['endereco'], $_POST['cpfoucnpj'], $_POST['importancia']);
@@ -34,7 +35,8 @@ if(isset($_POST['novo'])) {
         {
             $clienteJuridico->setEnderecoCobranca($_POST['endereco']);
         }
-        $clienteNovo = $clienteJuridico;
+
+        $pdo->persistir($clienteJuridico);
     }
     if ($_POST['novo'] == 2)
     {
@@ -47,9 +49,10 @@ if(isset($_POST['novo'])) {
         {
             $clienteFisico->setEnderecoCobranca($_POST['endereco']);
         }
-        $clienteNovo = $clienteFisico;
+
+        $pdo->persistir($clienteFisico);
     }
-    $pdo->persist($clienteNovo);
+
     header("location:/src/SON/Cliente/Util/lista.php");
 }
 ?>

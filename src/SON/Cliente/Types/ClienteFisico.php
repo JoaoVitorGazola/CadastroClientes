@@ -10,7 +10,6 @@ use SON\Cliente\Cliente;
 
 class ClienteFisico extends Cliente
 {
-    private $cpf;
     private $tipo = "Fisico";
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cpfNovo, $importanciaNovo)
     {
@@ -23,7 +22,7 @@ class ClienteFisico extends Cliente
     }
     public function setCpf($cpf)
     {
-        $this->cpf = $cpf;
+        parent::setCpfouCnpj($cpf);
     }
     public function getTipo()
     {

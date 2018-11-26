@@ -38,28 +38,25 @@ class MyPDO extends \PDO
         )";
                 $pdo->query($table) or die(print_r($pdo->errorInfo(), true));
                 $_SESSION['i'] = true;
-                return $pdo;
 
             }catch (PDOException $PDOException){
                 var_dump($PDOException);
             }
         }
     }
-    public function persist(Cliente $clienteNovo){
+    public function persistir(Cliente $clienteNovo){
         try {
-            if ($clienteNovo->getFisicooujuridico() == 1) {
-                $sql = $this->prepare("INSERT INTO Clientes(nome, idade, endereco, enderecoCobranca, fisicooujuridico, importancia)
-VALUES(nome, idade, endereco, enderecoCobranca, fisicooujuridico, importancia)");
-            } else if ($clienteNovo->getFisicooujuridico() == 2) {
-                $sql = $this->prepare("INSERT INTO Clientes(nome, idade, endereco, enderecoCobranca, fisicooujuridico, importancia)
-VALUES(nome, idade, endereco, enderecoCobranca, fisicooujuridico, importancia)");
-            }
-            $sql->bindValue("nome", $clienteNovo->getNome());
-            $sql->bindValue("idade", $clienteNovo->getIdade());
-            $sql->bindValue("endereco", $clienteNovo->getEndereco());
-            $sql->bindValue("enderecoCobranca", $clienteNovo->getEnderecoCobranca());
-            $sql->bindValue("fisicooujuridico", $clienteNovo->getFisicooujuridico());
-            $sql->execute();
+            $sql = $this;
+            $nome = $clienteNovo->getNome();
+            $endereco = $clienteNovo->getEndereco();
+            $enderecoCobranca = $clienteNovo->getEnderecoCobranca();
+            $idade = $clienteNovo->getIdade();
+            $importancia = $clienteNovo->getImportancia();
+            $cpfouCnpj = $clienteNovo->getCpfouCnpj();
+            $fisicoouJuridico = $clienteNovo->getFisicooujuridico();
+            $pdoResult = $sql->prepare("INSERT INTO clientes(`id`, `nome`, `idade`, `endereco`, `enderecoCobranca`, `cpfoucnpj`, `fisicooujuridico`, `importancia`, `created_at`) VALUES ( NULL, :nome, :idade, :endereco, :enderecoCobranca, :cpfouCnpj, :fisicoouJuridico, :importancia, CURRENT_TIMESTAMP)");
+
+            $pdoExec = $pdoResult->execute(array(":nome"=>$nome,":idade"=>$idade,":endereco"=>$endereco, ":enderecoCobranca"=>$enderecoCobranca, ":cpfouCnpj"=>$cpfouCnpj, ":fisicoouJuridico"=>$fisicoouJuridico, ":importancia"=>$importancia));
 
         }catch (\PDOException $PDOException){
             var_dump($PDOException);

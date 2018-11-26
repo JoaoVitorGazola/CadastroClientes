@@ -11,7 +11,6 @@ use SON\Cliente\Cliente;
 
 class ClienteJuridico extends Cliente
 {
-    private $cnpj;
     private $tipo = "Juridico";
     public function __construct($nomeNovo, $idadeNovo, $enderecoNovo, $cnpjNovo, $importanciaNovo)
     {
@@ -25,7 +24,7 @@ class ClienteJuridico extends Cliente
     }
     public function setCnpj($cnpj)
     {
-        $this->cnpj = $cnpj;
+        parent::setCpfouCnpj($cnpj);
     }
     public function getTipo()
     {
